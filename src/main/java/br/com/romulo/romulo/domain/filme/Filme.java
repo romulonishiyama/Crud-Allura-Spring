@@ -6,7 +6,10 @@ import jakarta.persistence.*;
 @Table(name = "filmes")
 public class Filme {
 
-    public Filme(){}
+    public Filme(){
+
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -55,4 +58,18 @@ public class Filme {
                 '}';
     }
 
+    public Filme( String nome, Integer duracaoEmMinutos, Integer anoLancamento, String genero) {
+        this.nome = nome;
+        this.duracaoEmMinutos = duracaoEmMinutos;
+        this.anoLancamento = anoLancamento;
+        this.genero = genero;
+    }
+
+    public void atualizaDados(DadosAlteracaoFilme dados) {
+        this.nome = dados.nome();
+        this.duracaoEmMinutos = dados.duracao();
+        this.anoLancamento = dados.ano();
+        this.genero = dados.genero();
+
+    }
 }
